@@ -133,7 +133,7 @@ class OrderedVector:
     
     def impress(self):
         if self.last_position == -1:
-            print('Vetro vazio')
+            print('Vetor vazio')
         else:
             for i in range(self.last_position + 1):
                 print(i, 'Cidade - ', self.values[i].vertex.label, '| Custo - ', self.values[i].cost, 
@@ -150,12 +150,14 @@ class AStar:
         print('Ponto atual: {}'.format(actual.label))
         actual.visited = True
 
+        # Fim da recursão
         if actual == self.objective:
             self.found = True
         else:
             ordered_vector = OrderedVector(len(actual.adjacents))
             for adjacent in actual.adjacents:
                 if adjacent.vertex.visited == False:
+                    # Não revisitar esse ponto
                     adjacent.vertex.visited = True
                     ordered_vector.insert(adjacent)
             ordered_vector.impress()
@@ -170,7 +172,7 @@ grafo.arad.adjacents
 grafo.arad.adjacents[0].vertex.label, grafo.arad.adjacents[0].vertex.objective_distance
 grafo.arad.adjacents[0].astar_distance, grafo.arad.adjacents[0].cost
 
-vector = OrderedVector(20)
+vector = OrderedVector(4)
 vector.insert(grafo.arad.adjacents[0])
 vector.insert(grafo.arad.adjacents[1])
 vector.insert(grafo.arad.adjacents[2])
